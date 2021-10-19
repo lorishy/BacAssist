@@ -1,0 +1,15 @@
+body {
+    font-family: 'Righteous', cursive;
+}
+.navbar {
+    background-color: red;
+    font-size : 20px;
+}
+.button-login {
+    background-color: red;
+    border-color: red ;
+    color: black;
+}
+.check {
+    background-color: red;
+}
