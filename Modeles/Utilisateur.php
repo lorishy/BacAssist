@@ -130,4 +130,5 @@ class Utilisateur extends Modele {
             return ["succes" => false, "erreur" => "identifiant", "idUtilisateur" => 0 ];
         }
     }
+    
 }

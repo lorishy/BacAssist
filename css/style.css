@@ -1,5 +1,6 @@
 body {
     font-family: 'Righteous', cursive;
+    background-color: lightgrey;
 }
 .navbar {
     background-color: red;
@@ -12,4 +13,8 @@ body {
 }
 .check {
     background-color: red;
+}
+.profil {
+    background-color: white;
+    border-radius: 25%;
 }

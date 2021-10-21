@@ -1,4 +1,4 @@
-<?php require_once "Modules.php";
+<?php require_once "Modele.php";
 
 class Bts extends Modele {
     
@@ -27,5 +27,16 @@ class Bts extends Modele {
     }
     public function setBts($newBts) {
         return $this->bts = $newBts;
+    }
+    public function getListeBts() {
+        $requete = $this->getBdd()->prepare("SELECT * from bts");
+        $requete->execute();
+        $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+        return $resultat;
+    }
+    public function getInfoBts($idUtilisateur) {
+        $requete = $this->getBdd()->prepare("SELECT * FROM bts WHERE id_bts = ?");
+        $requete->execute([$idUtilisateur]);
+        $resultat = $requete->fetchAll();
     }
 }

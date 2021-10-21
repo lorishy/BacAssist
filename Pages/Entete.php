@@ -27,9 +27,9 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="#">Cours</a>
-                <a class="nav-item nav-link" href="#">Quizz</a>
+                <a class="nav-item nav-link" href="#">Exercices</a>
                 <?php if(isset($_SESSION["email"])) {?>
-                    <a class="nav-item nav-link" href="#">Profil</a>
+                    <a class="nav-item nav-link" href="../Pages/Profil.php">Profil</a>
                     <a class="nav-item nav-link" href="../Traitements/Deconnexion.php">Deconnexion</a>
                 <?php } else { ?>
                     <a class="nav-item nav-link" href="../Pages/Inscription.php">Inscription</a>

@@ -5,6 +5,10 @@
     <h2>Connexion</h2>
 </div>
 <div class="container">
+<?php if(isset($_GET["succes"]) && $_GET["succes"] == "inscrit"){
+            echo "<p class='text-success'>Vous avez bien été inscrit, connectez-vous !</p>";
+        }?>
+        
     <form class="mt-4" action="../Traitements/Connexion.php" method="POST">
     <div class="mb-3">
         <label class="form-label">Email :</label>
