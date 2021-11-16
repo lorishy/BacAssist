@@ -1,20 +1,21 @@
 body {
     font-family: 'Righteous', cursive;
-    background-color: lightgrey;
+    background-color: rgb(240, 240, 240);
 }
 .navbar {
-    background-color: red;
+    background-color: rgb(15, 76, 129);
     font-size : 20px;
 }
 .button-login {
-    background-color: red;
-    border-color: red ;
-    color: black;
+    background-color: rgb(15, 76, 129);
+    border-color: rgb(15, 76, 129) ;
+    color: white;
 }
 .check {
-    background-color: red;
+    background-color: rgb(15, 76, 129);
 }
 .profil {
     background-color: white;
-    border-radius: 25%;
+    border-radius: 25px;
+    height: 100%;
 }

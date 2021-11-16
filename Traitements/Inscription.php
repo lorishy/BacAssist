@@ -17,7 +17,7 @@ if(isset($_POST["inscription"])) {
 
             $mention = 1;
 
-            if(strlen($mdp) > 8) {
+            if(strlen($mdp) >= 8) {
                     
                 if($mdp == $mdpConfirm) {
                     

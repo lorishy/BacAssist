@@ -18,10 +18,10 @@
                 echo "<div class='text-danger'>Les mots de passe ne correspondent pas !</div>";}
 
             else if(isset($_GET["erreur"]) && $_GET["erreur"] == "Mdp2") {
-                echo "<div class='text-danger'>Le mot de passe doit contenir au moins 8 caractère !</div>";}
+                echo "<div class='text-danger'>Le mot de passe doit contenir au moins 8 caractères !</div>";}
 
             else if(isset($_GET["erreur"]) && $_GET["erreur"] == "Pseudo") {
-                echo "<div class='text-danger'>Cet identifiant existe déjà !</div>";}
+                echo "<div class='text-danger'>Ce pseudo existe déjà !</div>";}
 
             else if(isset($_GET["erreur"]) && $_GET["erreur"] == "Email") {
                 echo "<div class='text-danger'>Cette adresse E-mail est déjà utilisée !</div>";}

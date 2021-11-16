@@ -28,8 +28,8 @@
         <?php if(isset($_GET["erreur"]) && $_GET["erreur"] == "motdepasse"){
             echo "<br><p class='text-danger'>Mauvais mot de passe !</p>";
         }?>
-        <?php if(isset($_GET["erreur"]) && $_GET["erreur"] == "identifiant"){
-            echo "<br><p class='text-danger'>Cet identifiant n'existe pas !</p>";
+        <?php if(isset($_GET["erreur"]) && $_GET["erreur"] == "Email"){
+            echo "<br><p class='text-danger'>Cette adresse Email n'existe pas !</p>";
         }?>
 </div>
 <?php require_once "Pied.php"?>
