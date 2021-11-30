@@ -22,6 +22,12 @@ $Utilisateur = new Utilisateur($_SESSION["id_utilisateur"]);
         echo "<div class='mt-4 text-danger'>Vous devez renseigner un mot de passe ou confirmer le mot de passe saisie !</div>";}?>
     <?php if(isset($_GET["succes"]) && $_GET["succes"] == "6") {
         echo "<div class='mt-4 text-danger'>Le mot de passe doit contenir au moins 8 caractères !</div>";}?>
+    <?php if(isset($_GET["succes"]) && $_GET["succes"] == "7") {
+        echo "<div class='mt-4 text-danger'>L'avatar n'est pas au bon format d'image</div>";}?>
+    <?php if(isset($_GET["succes"]) && $_GET["succes"] == "8") {
+        echo "<div class='mt-4 text-danger'>Erreur lors de l'insertion de l'avatar</div>";}?>
+    <?php if(isset($_GET["succes"]) && $_GET["succes"] == "9") {
+        echo "<div class='mt-4 text-danger'>Votre avatar ne doit pas dépasser 3Mo</div>";}?>
         
 </div>
 <div class="container">
@@ -59,6 +65,7 @@ $Utilisateur = new Utilisateur($_SESSION["id_utilisateur"]);
             <button class="btn button-login mt-4" type="submit" name="save">Sauvegarder les modifications</button>
         </div>
     </form>
+    <a href="../Pages/Supprimer.php?id=<?=$_SESSION['id_utilisateur']?>" class="btn button-deco mt-4" type="submit" name="supprimer">Supprimer mon profil</a>
 </div>
 
 

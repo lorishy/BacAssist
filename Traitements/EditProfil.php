@@ -79,31 +79,33 @@ if(isset($_SESSION["id_utilisateur"])){
 
                    $extensionUpload = strtolower(substr(strrchr($_FILES["avatar"]["name"], "."), 1));
 
-                   if (in_array($extensionUpload, $extensionsValides)) {
+                    if (in_array($extensionUpload, $extensionsValides)) {
 
-                      $chemin = "../Images/Utilisateurs/". $idUtilisateur.".".$extensionUpload;
-                      $resultat = move_uploaded_file($_FILES["avatar"]["tmp_name"], $chemin);
+                        $chemin = "../Images/Utilisateurs/". $idUtilisateur.".".$extensionUpload;
+                        $resultat = move_uploaded_file($_FILES["avatar"]["tmp_name"], $chemin);
 
-                      if($resultat) {
+                        if($resultat == true) {
+
                             $Utilisateur->setAvatar($idUtilisateur, $extensionUpload);
-
                             header("Location:../Pages/EditProfil.php?succes=1");
                             
-                      } else {
-                         $msg = "Erreur durant l'importation de l'avatar";
-                      }
-                   } else {
-                      $msg = "Votre avatar n'est pas au bon format";
-                   }
+                        } else {
+                            header("location:../Pages/EditProfil.php?succes=8");
+                        }
+                    } else {
+                      header("location:../Pages/EditProfil.php?succes=7");
+                    }
                 } else {
-                   echo "Votre avatar ne doit pas dépasser 3Mo";
+                   header("location:../Pages/EditProfil.php?succes=9");
                 }
-             }
+            }
             
 
         } else {
             header("location:../Pages/EditProfil.php");
         }  
+    } else {
+        header("location:../Pages/Profil.php");
     }
 } else {
     header("location:../Pages/Profil.php");

@@ -8,5 +8,10 @@ class Modele {
     }
 }
 
-require_once "Utilisateur.php";
-require_once "Bts.php";
+require_once "../Modeles/Bts.php";
+require_once "../Modeles/Cours.php";
+require_once "../Modeles/Matiere.php";
+require_once "../Modeles/Option.php";
+require_once "../Modeles/Question.php";
+require_once "../Modeles/Reponse.php";
+require_once "../Modeles/Utilisateur.php";

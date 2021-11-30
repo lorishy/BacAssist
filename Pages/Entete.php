@@ -26,8 +26,11 @@
     <!-- Liens dans la navbar -->
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Cours</a>
-                <a class="nav-item nav-link" href="#">Exercices</a>
+                <a class="nav-item nav-link" href="../Pages/NosBts.php">Nos BTS</a>
+                <?php if(isset($_SESSION["id_role"]) && $_SESSION["id_role"] == 2) { ?>
+                  <a class="nav-item nav-link" href="../Pages/AjoutCours.php">Ajouter un cours</a>
+                  <a class="nav-item nav-link" href="#">Ajouter un exercice</a>
+                <?php } ?>
                 <?php if(isset($_SESSION["email"])) {?>
                     <a class="nav-item nav-link" href="../Pages/Profil.php">Profil</a>
                     <a class="nav-item nav-link" href="../Traitements/Deconnexion.php">Deconnexion</a>

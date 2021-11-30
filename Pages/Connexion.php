@@ -22,14 +22,20 @@
         <button class="btn button-login mt-4" type="submit" name="connexion">Se connecter</button>
     </div>
 </form>
+
+<?php if(isset($_GET["erreur"]) && $_GET["erreur"] == "Envoi"){
+    echo "<br><p class='text-danger'>Erreur lors de la connexion !</p>";
+}?>
 <?php if(isset($_GET["erreur"]) && $_GET["erreur"] == "vide"){
-            echo "<br><p class='text-danger'>Tous les champs doivent être complétés !</p>";
-        }?>
-        <?php if(isset($_GET["erreur"]) && $_GET["erreur"] == "motdepasse"){
-            echo "<br><p class='text-danger'>Mauvais mot de passe !</p>";
-        }?>
-        <?php if(isset($_GET["erreur"]) && $_GET["erreur"] == "Email"){
-            echo "<br><p class='text-danger'>Cette adresse Email n'existe pas !</p>";
-        }?>
+    echo "<br><p class='text-danger'>Tous les champs doivent être complétés !</p>";
+}?>
+<?php if(isset($_GET["erreur"]) && $_GET["erreur"] == "motdepasse"){
+    echo "<br><p class='text-danger'>Mauvais mot de passe !</p>";
+}?>
+<?php if(isset($_GET["erreur"]) && $_GET["erreur"] == "Email"){
+    echo "<br><p class='text-danger'>Cette adresse Email n'existe pas !</p>";
+}?>
+        
+
 </div>
 <?php require_once "Pied.php"?>

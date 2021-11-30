@@ -166,5 +166,10 @@ class Utilisateur extends Modele {
             return ["succes" => false, "erreur" => "Email", "idUtilisateur" => 0 ];
         }
     }
+    public function supprimer($idUtilisateur) {
+        $requete = $this->getBdd()->prepare("DELETE FROM utilisateurs WHERE id_utilisateur = ?");
+        $requete->execute([$idUtilisateur]);
+        return true;
+    }
     
 }

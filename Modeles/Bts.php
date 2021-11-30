@@ -34,9 +34,4 @@ class Bts extends Modele {
         $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
         return $resultat;
     }
-    public function getInfoBts($idUtilisateur) {
-        $requete = $this->getBdd()->prepare("SELECT * FROM bts WHERE id_bts = ?");
-        $requete->execute([$idUtilisateur]);
-        $resultat = $requete->fetchAll();
-    }
 }

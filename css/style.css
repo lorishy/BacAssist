@@ -18,4 +18,24 @@ body {
     background-color: white;
     border-radius: 25px;
     height: 100%;
+    width: 80%;
+    border: solid 5px rgb(15, 76, 129);
+
+}
+.avatar {
+    width :150px;
+    height :150px;
+    border-radius : 50%;    
+}
+.button-deco {
+    background-color: red;
+    border-color: red;
+    color: white;
+}
+.pdf {
+    object-position: center;
+    object-fit: contain;
+}
+.titleCours {
+    text-decoration: underline red;
 }

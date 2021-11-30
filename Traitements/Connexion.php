@@ -31,4 +31,6 @@ if (isset($_POST["connexion"])) {
     } else {
         header("location:../Pages/Connexion.php?erreur=vide");
     }
+} else {
+    header("location:../Pages/Connexion.php?erreur=Envoi");
 }
