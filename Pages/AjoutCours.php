@@ -43,3 +43,4 @@ if(isset($_SESSION["id_role"]) && $_SESSION["id_role"] == 2) {
 <?php } else {
     header("location:../Index.php");
 }
+require_once "Pied.php";

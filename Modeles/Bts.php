@@ -29,7 +29,7 @@ class Bts extends Modele {
         return $this->bts = $newBts;
     }
     public function getListeBts() {
-        $requete = $this->getBdd()->prepare("SELECT * from bts");
+        $requete = $this->getBdd()->prepare("CALL getListeBts()");
         $requete->execute();
         $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
         return $resultat;

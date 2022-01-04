@@ -1,15 +1,17 @@
 body {
     font-family: 'Righteous', cursive;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(197, 197, 197);
 }
 .navbar {
     background-color: rgb(15, 76, 129);
     font-size : 20px;
+    box-shadow: 0 5px 5px rgb(10, 52, 88);
 }
 .button-login {
     background-color: rgb(15, 76, 129);
     border-color: rgb(15, 76, 129) ;
     color: white;
+
 }
 .check {
     background-color: rgb(15, 76, 129);
@@ -31,6 +33,7 @@ body {
     background-color: red;
     border-color: red;
     color: white;
+
 }
 .pdf {
     object-position: center;
@@ -39,3 +42,58 @@ body {
 .titleCours {
     text-decoration: underline red;
 }
+.divpres {
+    background-color: rgb(15, 76, 129);
+    color: black;
+    border-radius: 25px;
+    height: 500px;
+    margin: 25px;
+    border: solid 4px black;
+    box-shadow: 0 3px 12px black;
+}
+@media screen and (min-width : 700px) {
+    .divpres {
+        margin: 25px 4rem 4rem 4rem;
+    }
+    
+}
+@media screen and (min-width : 1400px) {
+    .divpres {
+        margin: 25px 6rem 6rem 6rem;
+    }
+    
+}
+
+.shadowCard{
+    box-shadow: 0 5px 5px black;
+}
+/* ------------------ Titre d'Acceuil ------------------ */
+.titreAcceuil {
+    animation-duration: 1.5s;
+    animation-name: slidein;
+    font-weight: bold;
+    color: rgb(15, 76, 129);
+    font-size: 80px !important;
+}
+@media screen and (max-width : 992px) {
+    .titreAcceuil {
+        font-size: 60px !important;
+    }
+}
+@media screen and (max-width : 585px) {
+    .titreAcceuil {
+        font-size: 30px !important;
+    }
+}
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 100%;
+      }
+    
+      to {
+        margin-left: 0%;
+        width: 100%;
+      }
+}
+/* ------------------ Fin Titre d'Acceuil ------------------ */

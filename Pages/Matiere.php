@@ -13,14 +13,12 @@
 
     <?php foreach($ListeCours as $cours) { ?>
         
-        <div>
-            <div class="card text-white bg-dark mb-3">
+            <div class="card text-white bg-dark mb-3 shadowCard">
                 <div class="card-body">
                     <h5 class="card-title"><?=$cours["titre"]?></h5>
-                    <a href="Cours.php?id=<?=$cours["id_cours"]?>" class="btn button-login">VOIR LE COURS !</a>
+                    <a href="Cours.php?id=<?=$cours["id_cours"]?>" class="btn button-login shadowCard">VOIR LE COURS !</a>
                 </div>
             </div>
-        </div>
     <?php } ?>
 </div>
 

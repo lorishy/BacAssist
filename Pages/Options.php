@@ -20,12 +20,12 @@
                 foreach ($ListeOptions as $option) { ?>
 
                     <div class="col-md-6">
-                        <div class="card text-white bg-dark mb-3">
+                        <div class="card text-white bg-dark mb-3 shadowCard">
                             <div class="card-header">OPTION</div>
                                 <div class="card-body">
                                     <h5 class="card-title"><?=$option["libelle"]?></h5>
                                     <p class="card-text">Visionner tout les cours du <?=$option["libelle"]?>.</p>
-                                    <a href="ListeMatieres.php?id=<?=$option["id_option"]?>" class="btn button-login">Voir les cours</a>
+                                    <a href="ListeMatieres.php?id=<?=$option["id_option"]?>" class="btn button-login shadowCard">Voir les cours</a>
                                 </div>
                             </div>
                     </div>

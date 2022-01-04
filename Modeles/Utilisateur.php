@@ -146,7 +146,7 @@ class Utilisateur extends Modele {
     }
     public function connexion($email, $mdp) {
         
-        $requete = $this->getBdd()->prepare("SELECT * FROM utilisateurs WHERE email = ?");
+        $requete = $this->getBdd()->prepare("CALL getEmailCorrespond(?)");
         $requete->execute([$email]);
         $emailExiste = $requete->rowcount();
 

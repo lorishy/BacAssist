@@ -25,7 +25,7 @@
                 <img src="../Images/avatar.png" width="150px" height="150px"style="border-radius : 25%">
                 <?php } ?>
                 <h1 class="mb-4"><?=$pseudoUtilisateur?></h1>
-                    <div class="profil">
+                    <div class="profil shadowCard">
                         <p class="mt-4">Nom : <?=$nomUtilisateur?></p>
                         <p class="mt-4">Prénom : <?=$prenomUtilisateur?></p>
                         <p class="mt-4">Email : <?=$emailUtilisateur?></p>

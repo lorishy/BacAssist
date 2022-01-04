@@ -13,12 +13,12 @@
         foreach ($ListeBts as $bts) {?>
 
             <div class="col-md-6">
-                  <div class="card text-white bg-dark mb-3">
+                  <div class="card text-white bg-dark mb-3 shadowCard">
                     <div class="card-header">BTS</div>
                         <div class="card-body">
                               <h5 class="card-title"><?=$bts["libelle"]?></h5>
                               <p class="card-text">Visionner tout les cours du <?=$bts["libelle"]?>.</p>
-                              <a href="Options.php?id=<?=$bts["id_bts"]?>" class="btn button-login">Voir les cours</a>
+                              <a href="Options.php?id=<?=$bts["id_bts"]?>" class="btn button-login shadowCard">Voir les cours</a>
                         </div>
                   </div>
             </div>
