@@ -1,4 +1,4 @@
-<?php require_once "Modele.php";
+<?php
 
 class Bts extends Modele {
     
@@ -11,7 +11,7 @@ class Bts extends Modele {
 
             $requete = $this->getBdd()->prepare("SELECT * FROM bts WHERE id_bts = ?");
             $requete->execute([$idBts]);
-            $bts = $requete->fetchAll(PDO::FETCH_ASSOC);
+            $bts = $requete->fetch(PDO::FETCH_ASSOC);
             $this->idBts = $idBts;
             $this->bts = $bts["libelle"];
         }

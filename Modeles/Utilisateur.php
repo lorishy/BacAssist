@@ -1,4 +1,4 @@
-<?php require_once "Modele.php";
+<?php
 
 class Utilisateur extends Modele {
 
@@ -12,6 +12,7 @@ class Utilisateur extends Modele {
     private $idRole; // int
     private $mention_legale; // int
     private $date_creation; // datetime
+    private $token; // string
 
     public function __construct($idUtilisateur = null) {
 
@@ -31,6 +32,7 @@ class Utilisateur extends Modele {
             $this->idRole = $infoUtilisateur["id_role"];
             $this->mention_legale = $infoUtilisateur["mention_legale"];
             $this->date_creation = $infoUtilisateur["date_creation"];
+            $this->token = $infoUtilisateur["token"];
 
         }
     }
@@ -60,6 +62,15 @@ class Utilisateur extends Modele {
     }
     public function getDateCreation() {
         return $this->date_creation;
+    }
+    public function getToken() {
+        return $this->token;
+    }
+    public function getUtilisateur($idUtilisateur) {
+        $requete = $this->getBdd()->prepare('SELECT * FROM utilisateurs WHERE id_utilisateur = ?');
+        $requete->execute([$idUtilisateur]);
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+        return $resultat;
     }
     public function setIdUtilisateur($idUtilisateur) {
         return $this->idUtilisateur = $idUtilisateur;
@@ -118,6 +129,10 @@ class Utilisateur extends Modele {
         $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET avatar = ? WHERE id_utilisateur = ?");
         $requete->execute([$idUtilisateur.".".$extensionUpload, $idUtilisateur]);
     }
+    public function setToken($remember_token, $idUtilisateur) {
+        $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET token = ? WHERE id_utilisateur = ?");
+        $requete->execute([$remember_token, $idUtilisateur]);
+    }
     public function inscription($nom, $prenom, $pseudo, $email, $mdp, $mention_legale) {
 
         $requete = $this->getBdd()->prepare("SELECT * FROM utilisateurs WHERE pseudo = ?");
@@ -165,6 +180,18 @@ class Utilisateur extends Modele {
         } else {
             return ["succes" => false, "erreur" => "Email", "idUtilisateur" => 0 ];
         }
+    }
+    public function initialiserConnexion() {
+
+            $_SESSION["id_utilisateur"] = $this->getIdUtilisateur();
+            $_SESSION["nom"] = $this->getNom();
+            $_SESSION["prenom"] = $this->getPrenom();
+            $_SESSION["pseudo"] = $this->getPseudo();
+            $_SESSION["email"] = $this->getEmail();
+            $_SESSION["mdp"] = $this->getMdp();
+            $_SESSION["id_role"] = $this->getIdRole();
+            $_SESSION["avatar"] = $this->getAvatar();
+            $_SESSION["token"] = $this->getToken();
     }
     public function supprimer($idUtilisateur) {
         $requete = $this->getBdd()->prepare("DELETE FROM utilisateurs WHERE id_utilisateur = ?");

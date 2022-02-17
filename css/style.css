@@ -16,6 +16,9 @@ body {
 .check {
     background-color: rgb(15, 76, 129);
 }
+.color-site {
+    color: rgb(15, 76, 129);
+}
 .profil {
     background-color: white;
     border-radius: 25px;

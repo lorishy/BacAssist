@@ -6,7 +6,7 @@ if(isset($_SESSION["id_role"]) && $_SESSION["id_role"] == 2) {
     $listeMatiere = $Matiere->getAllMatiere();?>
 
 <div class="container mt-4">
-    <h2 class="text-align text-center">Ajout d'un cours</h2>
+    <h2 class="text-center">Ajout d'un cours</h2>
     <form  class="mt-4" method="POST" action="../Traitements/AjoutCours.php" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label">Titre :</label>
@@ -41,6 +41,6 @@ if(isset($_SESSION["id_role"]) && $_SESSION["id_role"] == 2) {
     }?>
 </div>
 <?php } else {
-    header("location:../Index.php");
+    header("location:../index.php");
 }
 require_once "Pied.php";

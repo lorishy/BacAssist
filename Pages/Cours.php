@@ -13,7 +13,7 @@
         <embed class="pdf" src="../CoursPDF/<?=$contenuCours;?>" width="100%" height="800" type='application/pdf'/>
     </div>
     <div class="mt-5">
-        <a href="#">Exercecez-vous avec des exercices de ce chapitre</a>
+        <a class="fs-2 color-site" href="ListeExercice.php?id=<?=$idCours?>">Entrainez-vous et faites un exercice</a>
     </div>
 </div>
 

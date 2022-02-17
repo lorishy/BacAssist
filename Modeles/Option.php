@@ -1,9 +1,9 @@
-<?php require_once "Modele.php";
+<?php
 
 class Option extends Modele {
     private $idOption; // int
     private $libelle; // string
-    private $idBts; // int
+    private $idBts; // objet
 
     public function __construct($idOption = null) {
         
@@ -14,19 +14,9 @@ class Option extends Modele {
             $option = $requete->fetchAll(PDO::FETCH_ASSOC);
 
             $this->idOption = $idOption;
-            $this->idBts = $option["id_bts"];
+            $this->idBts = new Bts($option["id_bts"]);
             $this->libelle = $option["libelle"];
         }
-    }
-
-    public function getIdOption() {
-        return $this->idOption;
-    }
-    public function getLibelleOption() {
-        return $this->libelle;
-    }
-    public function getIdBts() {
-        return $this->idBts;
     }
     public function getListeOption($idBts) {
 

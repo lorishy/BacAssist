@@ -1,4 +1,19 @@
-<?php require_once "../Modeles/Modele.php"?>
+<?php require_once "../Modeles/Modele.php";
+if(isset($_COOKIE["BtsAssist"])){
+
+  $BtsAssist = $_COOKIE["BtsAssist"];
+  $BtsAssist = explode('-',$BtsAssist);
+  $idUtilisateur = $BtsAssist[0];
+  $Utilisateur = new Utilisateur($idUtilisateur);
+  $tokenExiste = $Utilisateur->getToken();
+
+  if($BtsAssist[1] == $tokenExiste) {
+      $Utilisateur->initialiserConnexion();
+  } else {
+    setcookie("BtsAssist",'', time() -3600, "/");
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +31,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="../Index.php">
+    <a class="navbar-brand" href="../index.php">
       <img src="../Images/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">BtsAssist
     </a>
       <!-- Bouton du responsive -->
@@ -29,7 +44,7 @@
                 <a class="nav-item nav-link" href="../Pages/NosBts.php">Nos BTS</a>
                 <?php if(isset($_SESSION["id_role"]) && $_SESSION["id_role"] == 2) { ?>
                   <a class="nav-item nav-link" href="../Pages/AjoutCours.php">Ajouter un cours</a>
-                  <a class="nav-item nav-link" href="#">Ajouter un exercice</a>
+                  <a class="nav-item nav-link" href="../Pages/AjoutExercice.php">Ajouter un exercice</a>
                 <?php } ?>
                 <?php if(isset($_SESSION["email"])) {?>
                     <a class="nav-item nav-link" href="../Pages/Profil.php">Profil</a>

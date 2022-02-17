@@ -1,5 +1,9 @@
-<?php require_once "Entete.php"?>
+<?php require_once "Entete.php";
 
+if(isset($_SESSION["id_utilisateur"])) {
+    header("location:Index.php");
+}
+?>
 
 <div class="mt-4" align="center">
     <h2>Inscription</h2>
@@ -57,7 +61,7 @@
         </div>
         <div class="d-flex align-items-center mb-3">
             <input class="form-label check me-3" type="checkbox" name="mention">
-            <label class="form-label">J'ai pris connaissance de la <span><a class="link-dark" href="#">politique de confidentialité</a></span> du site</label>
+            <label class="form-label">J'ai pris connaissance de la <span><a class="link-dark" href="Mention_legales.php">politique de confidentialité</a></span> du site</label>
             </div>
             <div>
                 <button class="btn button-login mt-4" type="submit" name="inscription">S'inscrire</button>

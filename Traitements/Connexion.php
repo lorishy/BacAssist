@@ -1,4 +1,4 @@
-<?php require_once "../Modeles/Utilisateur.php";
+<?php require_once "../Modeles/Modele.php";
 
 if (isset($_POST["connexion"])) {
 
@@ -14,15 +14,17 @@ if (isset($_POST["connexion"])) {
 
             $Utilisateur = new Utilisateur($retour["idUtilisateur"]);
 
-            $_SESSION["id_utilisateur"] = $Utilisateur->getIdUtilisateur();
-            $_SESSION["nom"] = $Utilisateur->getNom();
-            $_SESSION["prenom"] = $Utilisateur->getPrenom();
-            $_SESSION["pseudo"] = $Utilisateur->getPseudo();
-            $_SESSION["email"] = $Utilisateur->getEmail();
-            $_SESSION["mdp"] = $Utilisateur->getMdp();
-            $_SESSION["id_role"] = $Utilisateur->getIdRole();
-            $_SESSION["avatar"] = $Utilisateur->getAvatar();
-            header("location:../Index.php");
+            if(isset($_POST["remember"])) {
+                $Modele = new Modele();
+                $random = $Modele->str_random(60);
+                setcookie("BtsAssist", $retour["idUtilisateur"].'-'.$random, time() + 3600 * 24 * 7, "/");
+                $Utilisateur->setToken($random,$retour["idUtilisateur"]);
+            }
+
+            $Utilisateur->initialiserConnexion();
+
+            
+            header("location:../index.php");
 
         } else {
             header("location:../Pages/Connexion.php?erreur=" . $retour['erreur']);

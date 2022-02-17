@@ -1,11 +1,11 @@
-<?php require_once "Modele.php";
+<?php
 
 class Matiere extends Modele {
     
     private $idMatiereBts; // int
     private $libelleMatiere; // string
     private $idMatiere; // int
-    private $idBts; // int
+    private $idBts; // objet
 
     public function __construct($idMatiere = null) {
 
@@ -13,11 +13,13 @@ class Matiere extends Modele {
 
             $requete = $this->getBdd()->prepare("SELECT * FROM matieres_bts WHERE id_matiere_bts = ?");
             $requete->execute([$idMatiere]);
-            $matiere = $requete->fetchAll(PDO::FETCH_ASSOC);
+            $matiere = $requete->fetch(PDO::FETCH_ASSOC);
+            
+            
             $this->idMatiereBts = $idMatiere;
             $this->libelleMatiere = $matiere["libelle"];
             $this->idMatiere = $matiere["id_matiere"];
-            $this->idBts = $matiere["id_bts"];
+            $this->idBts = new Bts($matiere["id_bts"]);
 
         }
     }

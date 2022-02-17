@@ -7,8 +7,8 @@
 <div class="container mt-5">
       <div class="row">
         <?php 
-        $bts = new Bts();
-        $ListeBts = $bts->getListeBts();
+        $Bts = new Bts();
+        $ListeBts = $Bts->getListeBts();
 
         foreach ($ListeBts as $bts) {?>
 
