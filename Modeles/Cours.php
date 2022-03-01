@@ -45,10 +45,16 @@ class Cours extends Modele {
             $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
             return $resultats;
         }
-        public function AjoutCours($titre, $idMatiere, $idUtilisateur, $extensionUpload) {
+        public function AjoutCours($titre, $idMatiere, $idCours, $extensionUpload) {
 
             $requete = $this->getBdd()->prepare("INSERT INTO cours (titre, id_matiere_bts, contenu) VALUES (?,?,?)");
-            $requete->execute([$titre, $idMatiere, $idUtilisateur.".".$extensionUpload]);
+            $requete->execute([$titre, $idMatiere, $idCours.".".$extensionUpload]);
+        }
+        public function lastIdCours() {
+            $requete = $this->getBdd()->prepare("SELECT id_cours from cours order by id_cours desc limit 1");
+            $requete->execute();
+            $resultats = $requete->fetch(PDO::FETCH_ASSOC);
+            return $resultats;
         }
         
 }

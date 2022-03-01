@@ -6,6 +6,7 @@ class Matiere extends Modele {
     private $libelleMatiere; // string
     private $idMatiere; // int
     private $idBts; // objet
+    private $idOption; // object
 
     public function __construct($idMatiere = null) {
 
@@ -20,6 +21,7 @@ class Matiere extends Modele {
             $this->libelleMatiere = $matiere["libelle"];
             $this->idMatiere = $matiere["id_matiere"];
             $this->idBts = new Bts($matiere["id_bts"]);
+            $this->idOption = new Option($matiere["id_option"]);
 
         }
     }
@@ -39,14 +41,20 @@ class Matiere extends Modele {
         return $resultats;
     }
 
-    public function getListeMatieresOption($idOption) {
-        $requete = $this->getBdd()->prepare("SELECT matieres_bts.id_matiere_bts, matieres_bts.id_bts, matieres_bts.libelle, options.id_option, options.id_bts, correspond.id_matiere_bts, correspond.id_option FROM matieres_bts, options, correspond WHERE options.id_option = correspond.id_option AND correspond.id_matiere_bts = matieres_bts.id_matiere_bts AND options.id_bts = matieres_bts.id_bts AND options.id_option = ?");
-        $requete->execute([$idOption]);
+    public function getListeMatieresOption($idBts, $idOption) {
+        $requete = $this->getBdd()->prepare("SELECT * FROM matieres_bts WHERE id_bts = ? AND (matieres_bts.id_option = ? OR matieres_bts.id_option is null)");
+        $requete->execute([$idBts,$idOption]);
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
         return $resultats;
     }
 
     public function getMatiereParent() {
+        $requete = $this->getBdd()->prepare("SELECT * FROM matieres");
+        $requete->execute();
+        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
+        return $resultats;
+    }
+    public function getMatiereParentShuffle() {
         $requete = $this->getBdd()->prepare("SELECT matieres.libelle FROM matieres ORDER BY RAND() LIMIT 6");
         $requete->execute();
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);

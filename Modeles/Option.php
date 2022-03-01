@@ -11,7 +11,7 @@ class Option extends Modele {
             
             $requete = $this->getBdd()->prepare("SELECT * FROM options WHERE id_option = ?");
             $requete->execute([$idOption]);
-            $option = $requete->fetchAll(PDO::FETCH_ASSOC);
+            $option = $requete->fetch();
 
             $this->idOption = $idOption;
             $this->idBts = new Bts($option["id_bts"]);

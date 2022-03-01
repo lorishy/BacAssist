@@ -15,6 +15,15 @@ class Modele {
 
     }
 }
+function dateFr($date) {
+    if($date == null) {
+        return null;
+    }
+    $newDate = new DateTime($date);
+    return $newDate->format('d/m/Y');
+}
+
+
 require_once "../Modeles/Bts.php";
 require_once "../Modeles/Cours.php";
 require_once "../Modeles/Matiere.php";
@@ -25,3 +34,4 @@ require_once "../Modeles/Utilisateur.php";
 require_once "../Modeles/Exercice.php";
 require_once "../Modeles/Reponse.php";
 require_once "../Modeles/Note.php";
+require_once "../Modeles/Article.php";

@@ -9,10 +9,29 @@ if(empty($_GET["id"])) {
 if(isset($_GET["Error"]) && $_GET["Error"] = "Vide") {
     echo "<div class='text-danger container mt-4'>Vous devez répondre à toutes les questions !</div>";
 }
-if(isset($_GET["succes"])) {
+if(!empty($_GET["succes"])) {
     
-    $note = $_GET["succes"];
-     // Faire apparaitre une div avec la note ou l'ont peut se rediriger vers l'index mais qui actualise quand meme apres 5s
+    $note = intval($_GET["succes"]);
+    ?>
+    <div class="container mt-5">
+        <div class="card text-center text-white bg-dark mb-3 shadowCard">
+            <div class="card-header">Résultat de l'exercice</div>
+            <div class="card-body">
+                <h3 class="card-title"><?=$note?>/10</h3>
+                <?php if($note < 5) {
+                    echo "<p class='card-text text-danger fs-2'>Votre résultat est trop faible, revoyez les cours !</p>";
+                } else if($note > 4 && $note < 8) {
+                    echo "<p class='card-text text-warning fs-2'>Votre résultat est trop juste, travaillez davantage !</p>";
+                } else if($note > 7) {
+                    echo "<p class='card-text text-success fs-2'>Félicitation, vous avez eu une très bonne note !</p>";
+                }
+                    ?>
+                <a href="Index.php" class="btn button-login">Retour à la page d'acceuil</a>
+            </div>
+        </div>
+    </div>
+    <?php 
+    header("refresh:7;Index.php");    
 }
 
 $Exercice = new Exercice($_GET["id"]);
@@ -20,7 +39,7 @@ $QuestionExercice = $Exercice->getQuestionExercice();
 $numero = 1;
 ?>
 
-<form action="../Traitements/Exercice.php?id=<?=$_GET["id"]?>" method="POST">
+<form class="<?php if(isset($_GET["succes"])) { echo "d-none";}?>" action="../Traitements/Exercice.php?id=<?=$_GET["id"]?>" method="POST">
     <div class="container">
 
         <h1 class="text-center mb-5 mt-5">Exercice</h1>

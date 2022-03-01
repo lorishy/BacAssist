@@ -12,21 +12,24 @@ if(isset($_SESSION["id_role"]) && $_SESSION["id_role"] == 2) {
 
         if(isset($titre) && !empty($titre) && !empty($_FILES['contenu']['name']) && isset($idMatiere) && !empty($idMatiere)) {
 
+            $Cours = new Cours();
+            $getLastIdCours = $Cours->lastIdCours();
+            $LastIdCours = $getLastIdCours["id_cours"];
+            $idCours = $LastIdCours + 1;
+            
             $extension = "pdf";
             $extensionUpload = strtolower(substr(strrchr($_FILES["contenu"]["name"], "."), 1));
 
             if ($extensionUpload == $extension) {
-                $chemin = "../CoursPDF/". $idUtilisateur . "." . $extensionUpload;
+                $chemin = "../CoursPDF/". $idCours . "." . $extensionUpload;
                 $resultat = move_uploaded_file($_FILES["contenu"]["tmp_name"], $chemin);
-
                 if($resultat == true) {
 
-                    $Cours = new Cours();
-                    $AjoutCours = $Cours->AjoutCours($titre, $idMatiere, $idUtilisateur, $extensionUpload);
+                    $AjoutCours = $Cours->AjoutCours($titre, $idMatiere, $idCours, $extensionUpload);
                     header("location:../Pages/AjoutCours.php?succes=added");
                     
                 } else {
-                    header("location:../PagesAjoutCours.php?error=error");
+                    header("location:../Pages/AjoutCours.php?error=error");
                 }
 
             } else {

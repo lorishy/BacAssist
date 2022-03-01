@@ -6,7 +6,7 @@
 
 
     if ($ListeOptions == false) {
-        header("location:../Pages/ListeMatieres.php?idBts=$idBts");
+        header("location:../Pages/ListeMatieres.php?idB=$idBts");
     } else { ?>
 
         <div align="center" class="mt-5">
@@ -25,7 +25,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><?=$option["libelle"]?></h5>
                                     <p class="card-text">Visionner tout les cours du <?=$option["libelle"]?>.</p>
-                                    <a href="ListeMatieres.php?id=<?=$option["id_option"]?>" class="btn button-login shadowCard">Voir les cours</a>
+                                    <a href="ListeMatieres.php?id=<?=$option["id_option"]?>&idBts=<?=$option["id_bts"]?>" class="btn button-login shadowCard">Voir les cours</a>
                                 </div>
                             </div>
                     </div>

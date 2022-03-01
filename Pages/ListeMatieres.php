@@ -1,11 +1,12 @@
 <?php require_once "Entete.php";
 
-if(isset($_GET["id"])) {
+if(isset($_GET["id"]) && !empty($_GET["id"]) && isset($_GET["idBts"]) && !empty($_GET["idBts"])) {
 
     // Executer la requête d'affichage des matières avec les options
+    $idBts = $_GET["idBts"];
     $idOption = $_GET["id"];
     $Matiere = new Matiere();
-    $ListeMatiereOption = $Matiere->getListeMatieresOption($idOption);?>
+    $ListeMatiereOption = $Matiere->getListeMatieresOption($idBts, $idOption);?>
 
     <div align="center" class="mt-5">
         <h1>Voici toutes les matières</h1>
@@ -27,10 +28,10 @@ if(isset($_GET["id"])) {
         </div>
     </div>
 
-<?php } else if(isset($_GET["idBts"])) {
+<?php } else if(isset($_GET["idB"]) && !empty($_GET["idB"])) {
 
     // Executer la requête d'affichage des matières sans option
-    $idBts = $_GET["idBts"];
+    $idBts = $_GET["idB"];
     $Matiere = new Matiere();
     $ListeMatiere = $Matiere->getListeMatieres($idBts);?>
 
