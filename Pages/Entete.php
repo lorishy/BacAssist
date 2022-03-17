@@ -32,6 +32,15 @@ if(isset($_COOKIE["BtsAssist"])){
     <link rel="stylesheet" href="../css/style.css">
     <link rel="shortcut icon" type="image/png" href="../Images/favicon.png" sizes="16x16"/>
     <title>BtsAssist</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8CDD2PK01C"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8CDD2PK01C');
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light">

@@ -1,7 +1,7 @@
 <?php
 require_once "../Modeles/Modele.php";
 
-if(isset($_SESSION["id_utilisateur"])){
+if(isset($_SESSION["id_utilisateur"])) {
 
     $Utilisateur = new Utilisateur($_SESSION["id_utilisateur"]);
     $idUtilisateur = $Utilisateur->getIdUtilisateur();
@@ -18,34 +18,24 @@ if(isset($_SESSION["id_utilisateur"])){
         if(!empty($nom) || !empty($prenom) || !empty($pseudo) || !empty($email) || !empty($mdp) || !empty($mdpConfirm) || !empty($_FILES["avatar"]["name"])) {
         
             if(!empty($nom) AND isset($nom)){
-                $Utilisateur->setNom($nom, $idUtilisateur);
-                header("location:../Pages/EditProfil.php?succes=1");
+                $Utilisateur->setNom($nom);
             }
             if(!empty($prenom) AND isset($prenom)){
-                $Utilisateur->setPrenom($prenom, $idUtilisateur);
-                header("location:../Pages/EditProfil.php?succes=1");
+                $Utilisateur->setPrenom($prenom);
             }
-            
-            
             if(!empty($pseudo) AND isset($pseudo)){
-                $return = $Utilisateur->setPseudo($pseudo, $idUtilisateur);
+                $return = $Utilisateur->setPseudo($pseudo);
 
-                if($return != false) {
-                    header("location:../Pages/EditProfil.php?succes=1");
+                if($return == false) {
+                    header("location:../Pages/EditProfil.php?succes=2");exit;
                     
-                } else {
-                    header("location:../Pages/EditProfil.php?succes=2");
-
                 }
             }
-
             if(!empty($email) AND isset($email)){
                 $return = $Utilisateur->setEmail($email, $idUtilisateur);
 
-                if($return != false){
-                    header("location:../Pages/EditProfil.php?succes=1");
-                } else {
-                    header("location:../Pages/EditProfil.php?succes=3");
+                if($return == false){
+                    header("location:../Pages/EditProfil.php?succes=3");exit;
                 }
             }
 
@@ -57,17 +47,17 @@ if(isset($_SESSION["id_utilisateur"])){
 
                         if($mdpConfirm == $mdp) {
         
-                            $Utilisateur->setMdp($mdp, $idUtilisateur);
-                            header("location:../Pages/EditProfil.php?succes=1");
+                            $mdp = password_hash($mdp, PASSWORD_BCRYPT);
+                            $Utilisateur->setMdp($mdp);
 
                         } else {
-                            header("location:../Pages/EditProfil.php?succes=4");
+                            header("location:../Pages/EditProfil.php?succes=4");exit;
                         }
                     } else {
-                        header("location:../Pages/EditProfil.php?succes=6");
+                        header("location:../Pages/EditProfil.php?succes=6");exit;
                     }
                 } else {
-                    header("location:../Pages/EditProfil.php?succes=5");
+                    header("location:../Pages/EditProfil.php?succes=5");exit;
                 }
             }
 
@@ -86,23 +76,25 @@ if(isset($_SESSION["id_utilisateur"])){
 
                         if($resultat == true) {
 
-                            $Utilisateur->setAvatar($idUtilisateur, $extensionUpload);
-                            header("Location:../Pages/EditProfil.php?succes=1");
+                            $avatar = $idUtilisateur.".".$extensionUpload;
+                            $Utilisateur->setAvatar($avatar);
                             
                         } else {
-                            header("location:../Pages/EditProfil.php?succes=8");
+                            header("location:../Pages/EditProfil.php?succes=8");exit;
                         }
                     } else {
-                      header("location:../Pages/EditProfil.php?succes=7");
+                      header("location:../Pages/EditProfil.php?succes=7");exit;
                     }
                 } else {
-                   header("location:../Pages/EditProfil.php?succes=9");
+                   header("location:../Pages/EditProfil.php?succes=9");exit;
                 }
             }
-            
 
+            $Utilisateur->saveInfos();
+            header("location:../Pages/EditProfil.php?succes=1");
+            
         } else {
-            header("location:../Pages/EditProfil.php");
+            header("location:../Pages/EditProfil.php?succes=10");
         }  
     } else {
         header("location:../Pages/Profil.php");

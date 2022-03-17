@@ -3,10 +3,10 @@
 if(empty($_SESSION["id_utilisateur"])) {
     header("location:../Pages/Profil.php");
 }
-
+?><pre><?php
 $Utilisateur = new Utilisateur($_SESSION["id_utilisateur"]);
-
-?>
+print_r($Utilisateur);
+?></pre>
 
 <div class="mt-4" align="center">
     <h2>Edition du profil</h2>
@@ -28,6 +28,8 @@ $Utilisateur = new Utilisateur($_SESSION["id_utilisateur"]);
         echo "<div class='mt-4 text-danger'>Erreur lors de l'insertion de l'avatar</div>";}?>
     <?php if(isset($_GET["succes"]) && $_GET["succes"] == "9") {
         echo "<div class='mt-4 text-danger'>Votre avatar ne doit pas dépasser 3Mo</div>";}?>
+    <?php if(isset($_GET["succes"]) && $_GET["succes"] == "10") {
+        echo "<div class='mt-4 text-danger'>Veuillez remplir au moins un champ !</div>";}?>
         
 </div>
 <div class="container">

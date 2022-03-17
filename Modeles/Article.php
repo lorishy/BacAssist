@@ -33,9 +33,9 @@ class Article extends Modele {
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
         return $resultats;
     }
-    public function getListeArticle() {
+    public function getListeArticle($debut, $nombreElementParPage) {
 
-        $requete = $this->getBdd()->prepare("SELECT * FROM articles");
+        $requete = $this->getBdd()->prepare("SELECT * FROM articles ORDER BY date_creation DESC limit $debut, $nombreElementParPage");
         $requete->execute();
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
         return $resultats;
@@ -78,6 +78,12 @@ class Article extends Modele {
             $requete = $this->getBdd()->prepare("DELETE FROM articles WHERE id_article = ?");
             $requete->execute([$idArticle]);
             return true;
+    }
+    public function nombreArticle() {
+        $requete = $this->getBdd()->prepare("SELECT COUNT(id_article) as cpt FROM articles");
+        $requete->execute();
+        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
+        return $resultats;
     }
 
 }

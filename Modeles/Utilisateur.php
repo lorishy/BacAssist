@@ -66,42 +66,29 @@ class Utilisateur extends Modele {
     public function getToken() {
         return $this->token;
     }
-    public function getUtilisateur($idUtilisateur) {
-        $requete = $this->getBdd()->prepare('SELECT * FROM utilisateurs WHERE id_utilisateur = ?');
-        $requete->execute([$idUtilisateur]);
-        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
-        return $resultat;
-    }
     public function setIdUtilisateur($idUtilisateur) {
-        return $this->idUtilisateur = $idUtilisateur;
+        $this->idUtilisateur = $idUtilisateur;
     }
-    public function setNom($nom, $idUtilisateur) {
-
-        $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET nom = ? WHERE id_utilisateur = ?");
-        $requete->execute([$nom, $idUtilisateur]);
-        return $this->nom = $nom;
+    public function setNom($nom) {
+        $this->nom = $nom;
     }
-    public function setPrenom($prenom, $idUtilisateur) {
-        $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET prenom = ? WHERE id_utilisateur = ?");
-        $requete->execute([$prenom, $idUtilisateur]);
-        return $this->prenom = $prenom;
+    public function setPrenom($prenom) {
+        $this->prenom = $prenom;
     }
-    public function setPseudo($pseudo, $idUtilisateur) {
+    public function setPseudo($pseudo) {
 
         $requete = $this->getBdd()->prepare("SELECT * FROM utilisateurs WHERE pseudo = ?");
         $requete->execute([$pseudo]);
         $pseudoExiste = $requete->rowCount();
 
         if($pseudoExiste < 1) {
-
-            $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET pseudo = ? WHERE id_utilisateur = ?");
-            $requete->execute([$pseudo, $idUtilisateur]);
+            $this->pseudo = $pseudo;
             return true;  
         } else {
             return false;
         }
     }
-    public function setEmail($email, $idUtilisateur) {
+    public function setEmail($email) {
 
         $requete = $this->getBdd()->prepare("SELECT * FROM utilisateurs WHERE email = ?");
         $requete->execute([$email]);
@@ -109,29 +96,31 @@ class Utilisateur extends Modele {
 
         if($emailExiste < 1) {
 
-            $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET email = ? WHERE id_utilisateur = ?");
-            $requete->execute([$email, $idUtilisateur]);
+            $this->email = $email;
             return true;
         } else {
             return false;
         }
     }
-    public function setMdp($mdp, $idUtilisateur) {
-        $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET mdp = ? WHERE id_utilisateur = ?");
-        $requete->execute([password_hash($mdp, PASSWORD_BCRYPT), $idUtilisateur]);
-        return $this->mdp = $mdp;
+    public function setMdp($mdp) {
+        $this->mdp = $mdp;
     }
     public function setIdRole($idRole) {
         return $this->idRole = $idRole;
     }
-    public function setAvatar($idUtilisateur, $extensionUpload) {
-
-        $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET avatar = ? WHERE id_utilisateur = ?");
-        $requete->execute([$idUtilisateur.".".$extensionUpload, $idUtilisateur]);
+    public function setAvatar($avatar) {
+        $this->avatar = $avatar;
     }
-    public function setToken($remember_token, $idUtilisateur) {
-        $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET token = ? WHERE id_utilisateur = ?");
-        $requete->execute([$remember_token, $idUtilisateur]);
+    public function setToken($token) {
+        $this->token = $token;
+    }
+
+
+    public function getUtilisateur($idUtilisateur) {
+        $requete = $this->getBdd()->prepare('SELECT * FROM utilisateurs WHERE id_utilisateur = ?');
+        $requete->execute([$idUtilisateur]);
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+        return $resultat;
     }
     public function inscription($nom, $prenom, $pseudo, $email, $mdp, $mention_legale) {
 
@@ -197,6 +186,11 @@ class Utilisateur extends Modele {
         $requete = $this->getBdd()->prepare("DELETE FROM utilisateurs WHERE id_utilisateur = ?");
         $requete->execute([$idUtilisateur]);
         return true;
+    }
+
+    public function saveInfos() {
+        $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET nom = ?, prenom = ?,pseudo = ?, email = ?, mdp = ?, avatar = ?, token = ?WHERE id_utilisateur = ?");
+        $requete->execute([$this->nom, $this->prenom, $this->pseudo, $this->email, $this->mdp, $this->avatar, $this->token, $this->idUtilisateur]);
     }
     
 }

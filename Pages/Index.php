@@ -3,39 +3,59 @@
 <div class="container mt-4">
     <?php if(isset($_GET["sup"]) && $_GET["sup"] == "succes") {
         echo "<div class='text-success'>Le compte a été supprimé avec succès !</div>";
-        header("refresh:3;Index.php");
-    }
-
-    $Article = new Article();
-    $listeArticle = $Article->getListeArticle();?>
-
+        header("refresh:3;Index.php");}?>
 </div>
+
+    <?php
+        $Article = new Article();
+
+        $nombreArticle = $Article->nombreArticle();
+        if(isset($_GET["page"]) && !empty($_GET["page"])) {
+          $page = $_GET["page"];
+        } else {
+          $page=1;
+        }
+        
+        $nombreElementsParPages = 5;
+        $nombreDePage = ceil($nombreArticle[0]["cpt"]/$nombreElementsParPages);
+        $debut = ($page-1)*$nombreElementsParPages;
+        $listeArticle = $Article->getListeArticle($debut, $nombreElementsParPages);
+    ?>
+
 <h1 class="text-center mt-2 titreAcceuil">Bienvenue sur BtsAssist</h1>
 
 <div class="container-article main pt-5">
-    <?php foreach($listeArticle as $article) { 
-        
-        $Utilisateur = new Utilisateur($article["id_utilisateur"]);
-        $avatarUtilisateur = $Utilisateur->getAvatar();
-        $pseudoUtilisateur = $Utilisateur->getPseudo();
+  <div class="pagination">
+    <?php for($i=1;$i<=$nombreDePage;$i++) {
+    echo "<a class='btn button-login' href='?page=$i'>$i</a>&nbsp";
+    }?>
+  
+  </div>
+  <?php foreach($listeArticle as $article) { 
+    
+    $Utilisateur = new Utilisateur($article["id_utilisateur"]);
+    $avatarUtilisateur = $Utilisateur->getAvatar();
+    $pseudoUtilisateur = $Utilisateur->getPseudo();
     ?>
         
         <article class="card-article card-header-avat mt-5">
             <header class="card-article-header card-header-avatr">
                 <div class="content-avatar-titre">
                     <?php if(!empty($avatarUtilisateur)) {?>
-                        <img src="../Images/Utilisateurs/<?=$avatarUtilisateur?>" width="45" height="45" alt="" class="card-article-avatar">
+                        <img src="../Images/Utilisateurs/<?=$avatarUtilisateur?>" width="45" height="45" style="border-radius : 40%" class="card-article-avatar">
                     <?php } else {?>
-                        <img src="../Images/avatar.png" width="45" height="45" alt="" class="card-article-avatar">
+                        <img src="../Images/avatar.png" width="45" height="45" style="border-radius : 40%" class="card-article-avatar">
                     <?php } ?>
                     <div class="card-article-title"><?=$pseudoUtilisateur?></div>
                 </div>
             </header>
 
             <div class="card-article-body">
+              <?php if($article["image_article"] != null) { ?>
                 <p>
-                    <img class="full-width" src="../Images/Articles/<?=$article['image_article']?>" alt="">
+                <img class="full-width" src="../Images/Articles/<?=$article['image_article']?>" alt="">
                 </p>
+              <?php } ?>
             <footer class="card-article-footer">
               <button class="like-button" title="Like">
               <div class="like-button__ring"></div>
@@ -80,7 +100,7 @@
         <div class="formBx">
           <div class="header-modal">
             <img
-              src="avatar.png"
+              src="../Images/avatar.png"
               width="45"
               height="45"
               alt=""
@@ -95,7 +115,7 @@
               <div class="content-commentaire">
                 <div class="img">
                   <img
-                    src="avatar.png"
+                    src="../Images/avatar.png"
                     width="35"
                     height="35"
                     alt=""
@@ -112,154 +132,7 @@
                 <p class="date-commentaire">il y a 3j</p>
               </div>
             </div>
-            <div class="div-commentaire">
-              <div class="content-commentaire">
-                <div class="img">
-                  <img
-                    src="avatar.png"
-                    width="35"
-                    height="35"
-                    alt=""
-                    class="card-article-avatar"
-                  />
-                </div>
-                <div class="auteur-commentaire">L'auteur</div>
-                <p class="contenue-commentaire">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Placeat, consectetur.
-                </p>
-              </div>
-              <div class="content-date">
-                <p class="date-commentaire">il y a 3j</p>
-              </div>
-            </div>
-            <div class="div-commentaire">
-              <div class="content-commentaire">
-                <div class="img">
-                  <img
-                    src="avatar.png"
-                    width="35"
-                    height="35"
-                    alt=""
-                    class="card-article-avatar"
-                  />
-                </div>
-                <div class="auteur-commentaire">L'auteur</div>
-                <p class="contenue-commentaire">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Placeat, consectetur.
-                </p>
-              </div>
-              <div class="content-date">
-                <p class="date-commentaire">il y a 3j</p>
-              </div>
-            </div>
-            <div class="div-commentaire">
-              <div class="content-commentaire">
-                <div class="img">
-                  <img
-                    src="avatar.png"
-                    width="35"
-                    height="35"
-                    alt=""
-                    class="card-article-avatar"
-                  />
-                </div>
-                <div class="auteur-commentaire">L'auteur</div>
-                <p class="contenue-commentaire">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Placeat, consectetur.
-                </p>
-              </div>
-              <div class="content-date">
-                <p class="date-commentaire">il y a 3j</p>
-              </div>
-            </div>
-            <div class="div-commentaire">
-              <div class="content-commentaire">
-                <div class="img">
-                  <img
-                    src="avatar.png"
-                    width="35"
-                    height="35"
-                    alt=""
-                    class="card-article-avatar"
-                  />
-                </div>
-                <div class="auteur-commentaire">L'auteur</div>
-                <p class="contenue-commentaire">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Placeat, consectetur.
-                </p>
-              </div>
-              <div class="content-date">
-                <p class="date-commentaire">il y a 3j</p>
-              </div>
-            </div>
-            <div class="div-commentaire">
-              <div class="content-commentaire">
-                <div class="img">
-                  <img
-                    src="avatar.png"
-                    width="35"
-                    height="35"
-                    alt=""
-                    class="card-article-avatar"
-                  />
-                </div>
-                <div class="auteur-commentaire">L'auteur</div>
-                <p class="contenue-commentaire">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Placeat, consectetur.
-                </p>
-              </div>
-              <div class="content-date">
-                <p class="date-commentaire">il y a 3j</p>
-              </div>
-            </div>
-            <div class="div-commentaire">
-              <div class="content-commentaire">
-                <div class="img">
-                  <img
-                    src="avatar.png"
-                    width="35"
-                    height="35"
-                    alt=""
-                    class="card-article-avatar"
-                  />
-                </div>
-                <div class="auteur-commentaire">L'auteur</div>
-                <p class="contenue-commentaire">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Placeat, consectetur.
-                </p>
-              </div>
-              <div class="content-date">
-                <p class="date-commentaire">il y a 3j</p>
-              </div>
-            </div>
-            <div class="div-commentaire">
-              <div class="content-commentaire">
-                <div class="img">
-                  <img
-                    src="avatar.png"
-                    width="35"
-                    height="35"
-                    alt=""
-                    class="card-article-avatar"
-                  />
-                </div>
-                <div class="auteur-commentaire">L'auteur</div>
-                <p class="contenue-commentaire">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Placeat, consectetur.
-                </p>
-              </div>
-              <div class="content-date">
-                <p class="date-commentaire">il y a 3j</p>
-              </div>
-            </div>
-          </div>
+            
           <hr />
           <form class="send-message_input-commentaire" action="">
             <input type="text" placeholder="Ajouter un commentaire" />
@@ -269,9 +142,10 @@
       </div>
     </div>
     <div id="overlay" class=""></div>
+    </div>
     <!-- Modal End -->
-
 <script>
+  
   const BUTTON = document.querySelector(".like-button");
   const ICON = BUTTON.querySelector(".like-button__icon");
   const RING = BUTTON.querySelector(".like-button__ring");

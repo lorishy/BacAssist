@@ -42,6 +42,10 @@ if(isset($_SESSION["id_utilisateur"])) {
     <?php if(isset($_GET["erreur"]) && $_GET["erreur"] == "Email"){
         echo "<br><p class='text-danger'>Cette adresse Email n'existe pas !</p>";
     }?>
+    <?php if(isset($_GET["erreur"]) && $_GET["erreur"] == "cookies"){
+        echo "<br><p class='text-danger'>Vous devez accepter les cookies pour pouvoir rester connecté au site !</p>";
+
+}?>
             
 
     </div>

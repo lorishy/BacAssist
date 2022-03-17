@@ -15,10 +15,18 @@ if (isset($_POST["connexion"])) {
             $Utilisateur = new Utilisateur($retour["idUtilisateur"]);
 
             if(isset($_POST["remember"])) {
-                $Modele = new Modele();
-                $random = $Modele->str_random(60);
-                setcookie("BtsAssist", $retour["idUtilisateur"].'-'.$random, time() + 3600 * 24 * 7, "/");
-                $Utilisateur->setToken($random,$retour["idUtilisateur"]);
+
+                if (isset($_COOKIE["AcceptCookie"])) {
+
+                    $Modele = new Modele();
+                    $random = $Modele->str_random(60);
+                    setcookie("BtsAssist", $retour["idUtilisateur"].'-'.$random, time() + 3600 * 24 * 7, "/");
+                    $Utilisateur->setToken($random,$retour["idUtilisateur"]);
+
+                } else {
+                    header("location:../Pages/Connexion.php?erreur=cookies");exit;
+                }
+
             }
 
             $Utilisateur->initialiserConnexion();

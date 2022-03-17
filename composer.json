@@ -1,0 +1,17 @@
+{
+    "name": "loris/bts-assist",
+    "autoload": {
+        "psr-4": {
+            "Loris\\BtsAssist\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "lorishy",
+            "email": "haslayloris@yahoo.fr"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}

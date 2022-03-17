@@ -6,8 +6,9 @@ if(empty($_SESSION["id_utilisateur"])) {
 
 $Note = new Note();
 $ListeNote = $Note->getListeNote($_SESSION["id_utilisateur"]);
-$Moyenne = $Note->moyenneNote()
-?>
+$Moyenne = $Note->moyenneNote()?>
+
+<!-- Tableau des notes -->
 <div class="container mt-4">
     <table class="table">
       <thead>
