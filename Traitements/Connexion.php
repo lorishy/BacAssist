@@ -22,6 +22,7 @@ if (isset($_POST["connexion"])) {
                     $random = $Modele->str_random(60);
                     setcookie("BtsAssist", $retour["idUtilisateur"].'-'.$random, time() + 3600 * 24 * 7, "/");
                     $Utilisateur->setToken($random,$retour["idUtilisateur"]);
+                    $Utilisateur->saveInfos();
 
                 } else {
                     header("location:../Pages/Connexion.php?erreur=cookies");exit;
