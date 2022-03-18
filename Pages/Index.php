@@ -77,10 +77,18 @@
               <button class="btn-ajouter-message" data-modal-target="#modale-me">Afficher les 10 commentaires</button><!-- Faire un count des commentaire de l'article et le mettre dans 'afficher les ... comentaires' -->
               <div class="card-article-date">Il y a 5 min</div>
           </div>
-          <div class="border-top"></div>
-          <form method="POST" class="send-message_input" action="">
+          <hr>
+          <?php $Commentaire = new Commentaire();
+                $ListeCommentaire = $Commentaire->getCommentaires($article["id_article"]);
+            foreach ($ListeCommentaire as $Com) { ?>
+              <div class="card-body"><?=$Com['contenu']?></div>
+              <hr>
+              <?php } ?>
+              <div class="border-top"></div>
+          <form method="POST" class="send-message_input" action="../Traitements/AjoutCommentaire.php?id=<?=$article['id_article']?>">
               <input name="commentaire" type="text" placeholder="Ajouter un commentaire">
-              <a type="submit"><i class="fa-solid fa-paper-plane fa-xl"></i></a>
+              <input type="hidden" name="url" value="<?=$_SERVER["PHP_SELF"]?>">
+              <button class="btn-envoie-commentaire" name="envoi" type="submit"><i class="fa-solid fa-paper-plane fa-xl"></i></button>
           </form>
         </article>
     <?php } ?>

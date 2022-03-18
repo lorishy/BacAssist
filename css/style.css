@@ -582,3 +582,7 @@ body {
   .buttons a {
     color: #fcba7f;
   }
+  .btn-envoie-commentaire {
+    border: none;
+    background: none;
+  }

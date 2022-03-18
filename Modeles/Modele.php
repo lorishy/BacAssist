@@ -35,3 +35,4 @@ require_once "../Modeles/Exercice.php";
 require_once "../Modeles/Reponse.php";
 require_once "../Modeles/Note.php";
 require_once "../Modeles/Article.php";
+require_once "../Modeles/Commentaire.php";
