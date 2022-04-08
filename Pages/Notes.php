@@ -9,7 +9,13 @@ $ListeNote = $Note->getListeNote($_SESSION["id_utilisateur"]);
 $Moyenne = $Note->moyenneNote()?>
 
 <!-- Tableau des notes -->
-<div class="container mt-4">
+<section class="section section-bg larger-padding-top">
+    <div class="section-header">
+        <h2 class="titreAcceuil">Mes Notes</h2>
+        <span class="section-separator"></span>
+        <p class="titreAcceuil">Consultation de mes notes</p>
+    </div> 
+<div class="container container-medium">
     <table class="table">
       <thead>
         <tr>
@@ -47,5 +53,5 @@ $Moyenne = $Note->moyenneNote()?>
       </tbody>
     </table>
 </div>
-
+</section>
 <?php require_once "Pied.php"?>

@@ -5,18 +5,18 @@
     $idMatiere = $_GET["id"];
     $Cours = new Cours();
     $ListeCours = $Cours->getCours($idMatiere);?>
-
-<div align="center" class="mt-5">
-        <h1>Voici toutes les chapitres</h1>
-</div>
+<section class="section section-bg larger-padding-top">
+    <div class="section-header">
+        <h2 class="titreAcceuil">Chapitres</h2>
+        <span class="section-separator"></span>
+        <p class="titreAcceuil">Liste des chapitres</p>
+    </div>
 <div class="container mt-5">
-
     <?php foreach($ListeCours as $cours) { ?>
-        
-            <div class="card text-white bg-dark mb-3 shadowCard">
-                <div class="card-body">
+            <div class="card-chapitre mb-3">
+                <div>
                     <h5 class="card-title"><?=$cours["titre"]?></h5>
-                    <a href="Cours.php?id=<?=$cours["id_cours"]?>" class="btn button-login shadowCard">VOIR LE COURS !</a>
+                    <a href="Cours.php?id=<?=$cours["id_cours"]?>" class="btn div-btn-base mt-2">Voir le cours</a>
                 </div>
             </div>
     <?php } ?>

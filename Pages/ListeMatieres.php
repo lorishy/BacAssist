@@ -8,19 +8,24 @@ if(isset($_GET["id"]) && !empty($_GET["id"]) && isset($_GET["idBts"]) && !empty(
     $Matiere = new Matiere();
     $ListeMatiereOption = $Matiere->getListeMatieresOption($idBts, $idOption);?>
 
-    <div align="center" class="mt-5">
-        <h1>Voici toutes les matières</h1>
+<section class="section section-bg larger-padding-top">
+    <div class="section-header">
+        <h2 class="titreAcceuil">Matières</h2>
+        <span class="section-separator"></span>
+        <p class="titreAcceuil">Liste des matières</p>
     </div>
     <div class="container mt-5">
         <div class="row">
 
             <?php foreach($ListeMatiereOption as $matiere) { ?>
         
-                <div class="col-md-6">
-                    <div class="card text-white bg-dark mb-3 shadowCard">
+                <div class="col-lg-4 col-md-6"">
+                    <div class="card-bts mb-3">
                         <div class="card-body">
                             <h5 class="card-title"><?=$matiere["libelle"]?></h5>
-                            <a href="Matiere.php?id=<?=$matiere["id_matiere_bts"]?>" class="btn button-login shadowCard">VOIR LES CHAPITRES !</a>
+                            <span class="section-separator"></span>
+                            <p class="card-text">Visionner tout les chapitres du <?=$matiere["libelle"]?>.</p>
+                            <a href="Matiere.php?id=<?=$matiere["id_matiere_bts"]?>" class="btn div-btn-base">Accedez aux chapitres</a>
                         </div>
                     </div>
                 </div>
@@ -35,27 +40,31 @@ if(isset($_GET["id"]) && !empty($_GET["id"]) && isset($_GET["idBts"]) && !empty(
     $Matiere = new Matiere();
     $ListeMatiere = $Matiere->getListeMatieres($idBts);?>
 
-    <div align="center" class="mt-5">
-        <h1>Voici toutes les matières</h1>
+<section class="section section-bg larger-padding-top">
+    <div class="section-header">
+        <h2 class="titreAcceuil">Matières</h2>
+        <span class="section-separator"></span>
+        <p class="titreAcceuil">Liste des matières</p>
     </div>
+
     <div class="container mt-5">
         <div class="row">
 
             <?php foreach($ListeMatiere as $matiere) { ?>
         
-                <div class="col-md-6">
-                    <div class="card text-white bg-dark mb-3 shadowCard">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card-bts mb-3">
                         <div class="card-body">
                             <h5 class="card-title"><?=$matiere["libelle"]?></h5>
-                            <a href="Matiere.php?id=<?=$matiere["id_matiere_bts"]?>" class="btn button-login shadowCard">VOIR LES CHAPITRES !</a>
+                            <span class="section-separator"></span>
+                            <p class="card-text">Visionner tout les chapitres du <?=$matiere["libelle"]?>.</p>
+                            <a href="Matiere.php?id=<?=$matiere["id_matiere_bts"]?>" class="btn div-btn-base">Accedez aux chapitres</a>
                         </div>
                     </div>
                 </div>
             <?php } ?>
         </div>
     </div>
-
-
 
 <?php } else {
     header("location:../Pages/NosBts.php");

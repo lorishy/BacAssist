@@ -40,7 +40,7 @@ class Commentaire extends Modele {
         return $this->idArticle;
     }
     public function getCommentaires($idArticle) {
-        $requete = $this->getBdd()->prepare("SELECT * FROM commentaires WHERE id_article = ? ORDER BY RAND() LIMIT 3");
+        $requete = $this->getBdd()->prepare("SELECT * FROM commentaires WHERE id_article = ? ORDER BY RAND() LIMIT 2");
         $requete->execute([$idArticle]);
         $resultats = $requete->fetchAll();
         return $resultats;

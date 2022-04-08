@@ -12,24 +12,29 @@
         $avatarUtilisateur = $Utilisateur->getAvatar();
 
 ?>
-        <div class="container">
-            <div align="center" class="mt-4 mb-4">
-
+<section class="section section-bg larger-padding-top">
+    <div class="section-header">
+        <h2 class="titreAcceuil">Profil</h2>
+        <span class="section-separator"></span>
+        <p class="titreAcceuil">Votre profil</p>
+    </div> 
+        <div class="container container-small">
+            <div align="center">
                 <?php if(!empty($avatarUtilisateur)) { ?>
-                    <img src="../Images/Utilisateurs/<?=$avatarUtilisateur;?>" class="avatar">
+                    <img class="avatar" src="../Images/Utilisateurs/<?=$avatarUtilisateur;?>">
                 <?php
                 } else {
                 ?>
-                <img src="../Images/avatar.png" width="150px" height="150px"style="border-radius : 25%">
+                <img src="../Images/avatar.png" width="150px" class="avatar">
                 <?php } ?>
                 <h1 class="mb-4"><?=$pseudoUtilisateur?></h1>
-                    <div class="profil shadowCard">
+                    <div class="">
                         <p class="mt-4">Nom : <?=$nomUtilisateur?></p>
                         <p class="mt-4">Prénom : <?=$prenomUtilisateur?></p>
                         <p class="mt-4">Email : <?=$emailUtilisateur?></p>
                         <p class="mt-4">Pseudo : <?=$pseudoUtilisateur?></p>
                         <a href="EditProfil.php" class="btn button-login mb-2 mt-4">Editer votre Profil</a>
-                        <a href="Notes.php" class="btn button-login mb-2 mt-4">Consulter mes notes</a>
+                        <a href="Notes.php" class="btn div-btn-base mb-2 mt-4">Consulter mes notes</a>
                         <a href="../Traitements/Deconnexion.php" class="btn button-deco mb-2 mt-4">Deconnexion</a>
                     </div>
             </div>
@@ -37,14 +42,17 @@
         </div>
 
 <?php } else { ?>
-
-        <h1 class="text-center mt-4">Vous devez être connecté pour accéder à cette page, 
-            <span><a class="link-primary" href="../Pages/Connexion.php">connectez vous !</a></span>
-        </h1>
-        <h1 class="text-center mt-4">Si vous n'êtes pas encore inscrit, 
-            <span><a class="link-primary" href="../Pages/Inscription.php">inscrivez vous !</a></span>
-        </h1>
-
+<div class="container larger-padding-top">
+    <div class="alert alert-warning" role="alert">
+        Vous devez être connecté pour accéder à cette page,
+        <span><a class="link-primary" href="../Pages/Connexion.php">connectez vous !</a></span>
+    </div>
+    <div class="alert alert-warning" role="alert">
+        Si vous n'êtes pas encore inscrit, 
+        <span><a class="link-primary" href="../Pages/Inscription.php">inscrivez vous !</a></span>
+    </div>
+</div>
+</section>
 <?php } ?>
  
 

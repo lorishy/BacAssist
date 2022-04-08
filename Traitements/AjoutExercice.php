@@ -1,5 +1,4 @@
 <?php require_once "../Modeles/Modele.php";
-
 if(isset($_POST["envoyer"])) {
 
     $titre = $_POST["titre"];
@@ -8,7 +7,6 @@ if(isset($_POST["envoyer"])) {
     $reponses = $_POST["reponse"];
     $utilisateur = $_SESSION["id_utilisateur"];
     $erreur = 0;
-
 
     if(!empty($titre) && !empty($cours) && !empty($questions) && !empty($reponses)) {
         
@@ -43,12 +41,11 @@ if(isset($_POST["envoyer"])) {
                             $insertReponse->insertReponse($reponse, $idQuestion, $statut);
                         } 
 
-                    } header("location:../Membre/Index.php?succes=reussite");
+                    } header("location:../Pages/AjoutExercice.php?succes=reussite");
 
             } else {
-                header("location:../Membre/CreerQuizz.php?erreur=Vide2");
+                header("location:../Pages/AjoutExercice.php?erreur=Vide2");
             }
-
     } else {
         header("location:../Pages/AjoutExercice.php?erreur=Vide");
     }    

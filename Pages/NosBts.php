@@ -1,8 +1,12 @@
 <?php require_once "Entete.php"?>
 
-<div align="center" class="mt-5">
-    <h1>Accédez aux cours de tous les BTS <br>avec leurs options !</h1>
-</div>
+<section class="section section-bg larger-padding-top">
+    <div class="section-header">
+        <h2 class="titreAcceuil">Nos BTS</h2>
+        <span class="section-separator"></span>
+        <p class="titreAcceuil">Accédez aux options cours et matières de tous les BTS</p>
+    </div>
+
 
 <div class="container mt-5">
       <div class="row">
@@ -12,17 +16,20 @@
 
         foreach ($ListeBts as $bts) {?>
 
-            <div class="col-md-6">
-                  <div class="card text-white bg-dark mb-3 shadowCard">
-                    <div class="card-header">BTS</div>
-                        <div class="card-body">
-                              <h5 class="card-title"><?=$bts["libelle"]?></h5>
-                              <p class="card-text">Visionner tout les cours du <?=$bts["libelle"]?>.</p>
-                              <a href="Options.php?id=<?=$bts["id_bts"]?>" class="btn button-login shadowCard">Voir les cours</a>
+            <div class="col-lg-4 col-md-6">
+                  <div class="card-bts mb-3">
+                        <div class="card-body-nos-bts">
+                              <h3 class="card-title"><?=$bts["libelle"]?></h3>
+                              <span class="section-separator"></span>
+                              <p class="card-text">Accéder à tous les cours du <?=$bts["libelle"]?>.</p>
+                              <div>
+                                    <a href="Options.php?id=<?=$bts["id_bts"]?>" class="btn div-btn-base">Voir plus</a>
+                              </div>
                         </div>
                   </div>
             </div>
 <?php } ?>
       </div>
 </div>
+</section>
 <?php require_once "Pied.php"?>

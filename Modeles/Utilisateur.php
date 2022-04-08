@@ -189,7 +189,7 @@ class Utilisateur extends Modele {
     }
 
     public function saveInfos() {
-        $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET nom = ?, prenom = ?,pseudo = ?, email = ?, mdp = ?, avatar = ?, token = ?WHERE id_utilisateur = ?");
+        $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET nom = ?, prenom = ?,pseudo = ?, email = ?, mdp = ?, avatar = ?, token = ? WHERE id_utilisateur = ?");
         $requete->execute([$this->nom, $this->prenom, $this->pseudo, $this->email, $this->mdp, $this->avatar, $this->token, $this->idUtilisateur]);
     }
     

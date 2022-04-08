@@ -27,13 +27,12 @@ if(isset($_SESSION["id_role"]) && $_SESSION["id_role"] == 2) {
 
                     $AjoutCours = $Cours->AjoutCours($titre, $idMatiere, $idCours, $extensionUpload);
                     header("location:../Pages/AjoutCours.php?succes=added");
-                    
                 } else {
                     header("location:../Pages/AjoutCours.php?error=error");
                 }
 
             } else {
-                header("location:../PagesAjoutCours?error=extension");
+                header("location:../Pages/AjoutCours?error=extension");
             }
 
         } else {

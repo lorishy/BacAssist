@@ -5,8 +5,13 @@ if(isset($_SESSION["id_role"]) && $_SESSION["id_role"] == 2) {
     $Matiere = new Matiere(); 
     $listeMatiere = $Matiere->getAllMatiere();?>
 
-<div class="container mt-4">
-    <h2 class="text-center">Ajout d'un cours</h2>
+<section class="section section-bg larger-padding-top">
+    <div class="section-header">
+        <h2 class="titreAcceuil">Ajouter un cours </h2>
+        <span class="section-separator"></span>
+        <p class="titreAcceuil">Ajouter les informations de votre cours</p>
+    </div>  
+<div class="container container-small">
     <form  class="mt-4" method="POST" action="../Traitements/AjoutCours.php" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label">Titre :</label>
@@ -25,7 +30,9 @@ if(isset($_SESSION["id_role"]) && $_SESSION["id_role"] == 2) {
             <label class="form-label">Contenu : <span class="text-secondary">(Format PDF)</span></label>
             <input type="file" class="form-control" name="contenu">
         </div>
-        <button type="submit" class="btn button-login mt-4" name="ajouter">Envoyer</button>
+        <div class="text-center">
+            <button type="submit" class="btn div-btn-base" name="ajouter">Envoyer</button>
+        </div>
     </form>
     <?php if(isset($_GET["error"]) && $_GET["error"] == "error") {
         echo "<div class='text-danger mt-4'>Erreur lors de l'ajout du cours !</div>";
