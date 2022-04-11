@@ -6,7 +6,7 @@ if(empty($_SESSION["id_utilisateur"])) {
 
 $Note = new Note();
 $ListeNote = $Note->getListeNote($_SESSION["id_utilisateur"]);
-$Moyenne = $Note->moyenneNote()?>
+$Moyenne = $Note->moyenneNote($_SESSION["id_utilisateur"])?>
 
 <!-- Tableau des notes -->
 <div class="container mt-4">
@@ -28,20 +28,22 @@ $Moyenne = $Note->moyenneNote()?>
         <?php } ?>
       </tbody>
     </table>
+
+<!-- Deuxième tableau -->
     <table class="table">
       <thead>
         <tr>
           <th>Matières</th>
           <th>Moyenne de l'élève</th>
           <th>Moyenne de la matière</th>
-          <th>Moyenne générale</th>
         </tr>
       </thead>
       <tbody>
         <?php foreach ($Moyenne as $moy) { ?>
           <tr>
             <th><?=$moy["libelle"]?></th>
-            <td><?=intval($moy["moyenne"])?>/10</td>
+            <td><?=intval($moy["moyUser"])?>/10</td>
+            <td><?=intval($moy["moyMat"])?>/10</td>
           </tr>
         <?php } ?>
       </tbody>

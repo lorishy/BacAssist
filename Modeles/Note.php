@@ -36,10 +36,20 @@ class Note extends Modele {
         return $resultat;
 
     }
-    public function moyenneNote() {
+    public function moyenneNote($idUtilisateur) {
 
-        $requete = $this->getBdd()->prepare("SELECT AVG(note) AS moyenne, matieres.libelle from notes, exercices, cours, matieres_bts,matieres where notes.id_exercice = exercices.id_exercice and exercices.id_cours = cours.id_cours and cours.id_matiere_bts = matieres_bts.id_matiere_bts and matieres_bts.id_matiere = matieres.id_matiere");
-        $requete->execute();
+        $requete = $this->getBdd()->prepare("SELECT 
+        matieres_bts.libelle,
+        moyUser.moyUser,
+        moyMat.moyMat
+    from 
+        matieres 
+      INNER JOIN matieres_bts ON matieres_bts.id_matiere = matieres.id_matiere
+      INNER JOIN 
+        (SELECT AVG(notes.note) as moyUser, cours.id_matiere_bts FROM notes join exercices on notes.id_exercice = 		exercices.id_exercice join cours on exercices.id_cours = cours.id_cours WHERE notes.id_utilisateur = ? GROUP 	  BY cours.id_matiere_bts) as moyUser ON matieres_bts.id_matiere_bts = moyUser.id_matiere_bts
+      INNER JOIN 
+        (SELECT AVG(notes.note) as moyMat, cours.id_matiere_bts FROM notes join exercices on notes.id_exercice = 		exercices.id_exercice join cours on exercices.id_cours = cours.id_cours GROUP BY cours.id_matiere_bts) as 		moyMat ON matieres_bts.id_matiere_bts = moyMat.id_matiere_bts");
+        $requete->execute([$idUtilisateur]);
         $resultat = $requete->fetchAll();
         return $resultat;
     }
