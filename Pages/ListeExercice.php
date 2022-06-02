@@ -8,17 +8,21 @@ $idCours = $_GET["id"];
 $Exercice = new Exercice();
 $ListeExercice = $Exercice->getListeExercice($idCours);
 ?>
-
-<div class="container mt-5">
+    <section class="section section-bg larger-padding-top">
+    <div class="section-header">
+        <h2 class="titreAcceuil">Exercice</h2>
+        <span class="section-separator"></span>
+        <p class="titreAcceuil">Entraînez-vous</p>
+    </div>
+<div class="container">
     <div class="row">
         <?php
             foreach ($ListeExercice as $exercice) {?>
                 <div class="col-md-3">
-                    <div class="card text-white bg-dark mb-3 shadowCard">
-                        <div class="card-header">Exercice</div>
-                            <div class="card-body">
+                    <div class="card-chapitre mb-3">
+                            <div>
                                 <h5 class="card-title"><?=$exercice["titre"]?></h5>
-                                <a href="Exercice.php?id=<?=$exercice["id_exercice"]?>" class="btn button-login">S'EXERCER !</a>
+                                <a href="Exercice.php?id=<?=$exercice["id_exercice"]?>" class="btn div-btn-base mt-2">S'exercer !</a>
                             </div>
                     </div>
                 </div>

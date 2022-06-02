@@ -30,7 +30,7 @@ class Note extends Modele {
 
     public function getListeNote($idUtilisateur) {
 
-        $requete = $this->getBdd()->prepare("SELECT notes.note, matieres.libelle,matieres.id_matiere, notes.date_note from notes inner join exercices on notes.id_exercice = exercices.id_exercice inner join cours on exercices.id_cours = cours.id_cours inner join matieres_bts on cours.id_matiere_bts = matieres_bts.id_matiere_bts left join matieres on matieres_bts.id_matiere = matieres.id_matiere where notes.id_utilisateur = ? order by matieres.libelle desc");
+        $requete = $this->getBdd()->prepare("SELECT notes.note, matieres_bts.libelle, notes.date_note from notes inner join exercices on notes.id_exercice = exercices.id_exercice inner join cours on exercices.id_cours = cours.id_cours inner join matieres_bts on cours.id_matiere_bts = matieres_bts.id_matiere_bts where notes.id_utilisateur = ? order by matieres_bts.libelle desc");
         $requete->execute([$idUtilisateur]);
         $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
         return $resultat;
@@ -42,13 +42,11 @@ class Note extends Modele {
         matieres_bts.libelle,
         moyUser.moyUser,
         moyMat.moyMat
-    from 
-        matieres 
-      INNER JOIN matieres_bts ON matieres_bts.id_matiere = matieres.id_matiere
+    from matieres_bts
       INNER JOIN 
-        (SELECT AVG(notes.note) as moyUser, cours.id_matiere_bts FROM notes join exercices on notes.id_exercice = 		exercices.id_exercice join cours on exercices.id_cours = cours.id_cours WHERE notes.id_utilisateur = ? GROUP 	  BY cours.id_matiere_bts) as moyUser ON matieres_bts.id_matiere_bts = moyUser.id_matiere_bts
+        (SELECT AVG(notes.note) as moyUser, cours.id_matiere_bts FROM notes join exercices on notes.id_exercice = exercices.id_exercice join cours on exercices.id_cours = cours.id_cours WHERE notes.id_utilisateur = ? GROUP BY cours.id_matiere_bts) as moyUser ON matieres_bts.id_matiere_bts = moyUser.id_matiere_bts
       INNER JOIN 
-        (SELECT AVG(notes.note) as moyMat, cours.id_matiere_bts FROM notes join exercices on notes.id_exercice = 		exercices.id_exercice join cours on exercices.id_cours = cours.id_cours GROUP BY cours.id_matiere_bts) as 		moyMat ON matieres_bts.id_matiere_bts = moyMat.id_matiere_bts");
+        (SELECT AVG(notes.note) as moyMat, cours.id_matiere_bts FROM notes join exercices on notes.id_exercice = 		exercices.id_exercice join cours on exercices.id_cours = cours.id_cours GROUP BY cours.id_matiere_bts) as moyMat ON matieres_bts.id_matiere_bts = moyMat.id_matiere_bts");
         $requete->execute([$idUtilisateur]);
         $resultat = $requete->fetchAll();
         return $resultat;

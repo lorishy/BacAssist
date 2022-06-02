@@ -6,14 +6,18 @@
     $Cours = new Cours($idCours);
     $titreCours = $Cours->getTitreCours();
     $contenuCours = $Cours->getContenuCours();?>
-
-<div class="container mt-5">
-    <div align="center">
-        <h1 class="text-uppercase mb-5 titleCours"><?=$titreCours?></h1>
-        <embed class="pdf" src="../CoursPDF/<?=$contenuCours;?>" width="100%" height="800" type='application/pdf'/>
+    <section class="section section-bg larger-padding-top">
+    <div class="section-header">
+        <h2 class="titreAcceuil">Cours</h2>
+        <span class="section-separator"></span>
+        <p class="titreAcceuil">Cours simplifié</p>
     </div>
-    <div class="mt-5">
-        <a class="fs-2 color-site" href="ListeExercice.php?id=<?=$idCours?>">Entrainez-vous et faites un exercice</a>
+    <div class="container text-center">
+        <h5><?=$titreCours?></h5>
+        <embed class="pdf" src="../CoursPDF/<?=$contenuCours;?>"type='application/pdf'/>
+    </div>
+    <div class="mt-5 text-center">
+        <a class="btn btn-pagination" href="ListeExercice.php?id=<?=$idCours?>">Entrainez-vous !</a>
     </div>
 </div>
 

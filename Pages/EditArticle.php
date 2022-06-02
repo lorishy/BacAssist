@@ -6,9 +6,13 @@ $Article = new Article($idArticle);
 $idUtilisateurArticle = $Article->getIdUtilisateur();
 
 if(isset($_GET['id']) && !empty($_GET['id']) && $idUtilisateur == $idUtilisateurArticle->getIdUtilisateur()) { ?>
-
-<div class="container mt-5">
-    <h2 class="text-center">Edition de l'article</h2>
+<section class="section section-bg larger-padding-top">
+    <div class="section-header">
+        <h2 class="titreAcceuil">Editier</h2>
+        <span class="section-separator"></span>
+        <p class="titreAcceuil">Modification de votre article</p>
+    </div> 
+<div class="container container-small">
 <?php if(isset($_GET["succes"]) && $_GET["succes"] == "1") {
     echo "<div class='text-success'>La modification a bien été effectuée</div>";}?>
 <?php if(isset($_GET["error"]) && $_GET["error"] == "image") {
@@ -32,11 +36,13 @@ if(isset($_GET['id']) && !empty($_GET['id']) && $idUtilisateur == $idUtilisateur
             <input type="file" class="form-control" name="image">
         </div>
         <div>
-            <button class="btn button-login mt-4" type="submit" name="save">Sauvegarder les modifications</button>
+            <div class="text-center">
+                <button class="btn div-btn-base" type="submit" name="save">Sauvegarder les modifications</button>
+            </div>
         </div>
     </form>
 </div>
-
+</section>
 <?php }  else {
     header("location:/Index.php");
 }

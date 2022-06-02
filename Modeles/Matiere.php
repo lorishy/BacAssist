@@ -4,7 +4,6 @@ class Matiere extends Modele {
     
     private $idMatiereBts; // int
     private $libelleMatiere; // string
-    private $idMatiere; // int
     private $idBts; // objet
     private $idOption; // object
 
@@ -19,7 +18,6 @@ class Matiere extends Modele {
             
             $this->idMatiereBts = $idMatiere;
             $this->libelleMatiere = $matiere["libelle"];
-            $this->idMatiere = $matiere["id_matiere"];
             $this->idBts = new Bts($matiere["id_bts"]);
             $this->idOption = new Option($matiere["id_option"]);
 
@@ -48,16 +46,4 @@ class Matiere extends Modele {
         return $resultats;
     }
 
-    public function getMatiereParent() {
-        $requete = $this->getBdd()->prepare("SELECT * FROM matieres");
-        $requete->execute();
-        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
-        return $resultats;
-    }
-    public function getMatiereParentShuffle() {
-        $requete = $this->getBdd()->prepare("SELECT matieres.libelle FROM matieres ORDER BY RAND() LIMIT 6");
-        $requete->execute();
-        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
-        return $resultats;
-    }
 }

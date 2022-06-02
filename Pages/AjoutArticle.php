@@ -1,9 +1,13 @@
 <?php require_once "Entete.php";
 
 if(isset($_SESSION["id_role"]) && $_SESSION["id_role"] == 2) { ?>
-    
-<div class="container mt-4">
-    <h2 class="text-center">Ajout d'un article</h2>
+<section class="section section-bg larger-padding-top">
+    <div class="section-header">
+        <h2 class="titreAcceuil">Créer un article</h2>
+        <span class="section-separator"></span>
+        <p class="titreAcceuil">Remplire votre article</p>
+    </div> 
+<div class="container container-small">
 <?php if(isset($_GET['error']) && $_GET['error'] == 'error') {
     echo "<div class='text-danger'>Erreur lors de l'ajout de l'article</div>";
 }
@@ -30,9 +34,12 @@ if(isset($_GET['succes']) && $_GET['succes'] == 'added') {
             <label class="form-label">Image : <span class="text-secondary">(Facultatif)</span></label>
             <input type="file" class="form-control" name="image">
         </div>
-        <button type="submit" class="btn button-login mt-4" name="poster">Poster l'article</button>
+        <div class="text-center">
+            <button type="submit" class="btn div-btn-base" name="poster">Poster l'article</button>
+        </div>
     </form>
 </div>
+</section>
 <?php } else {
     header("location:../index.php");
 }

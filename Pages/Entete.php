@@ -14,6 +14,7 @@ if(isset($_COOKIE["BtsAssist"])){
   }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +35,8 @@ if(isset($_COOKIE["BtsAssist"])){
     <title>BtsAssist</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8CDD2PK01C"></script>
+    <!-- jquery pour la nav -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -43,32 +46,49 @@ if(isset($_COOKIE["BtsAssist"])){
     </script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="../index.php">
-      <img src="../Images/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">BtsAssist
-    </a>
-      <!-- Bouton du responsive -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-    <!-- Liens dans la navbar -->
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" href="../Pages/NosBts.php">Nos BTS</a>
-                <?php if(isset($_SESSION["id_role"]) && $_SESSION["id_role"] == 2) { ?>
-                  <a class="nav-item nav-link" href="../Pages/AjoutCours.php">Ajouter un cours</a>
-                  <a class="nav-item nav-link" href="../Pages/AjoutExercice.php">Ajouter un exercice</a>
-                  <a class="nav-item nav-link" href="../Pages/MesArticles.php">Mes Articles</a>
-                <?php } ?>
-                <?php if(isset($_SESSION["email"])) {?>
-                    <a class="nav-item nav-link" href="../Pages/Profil.php">Profil</a>
-                    <a class="nav-item nav-link" href="../Traitements/Deconnexion.php">Deconnexion</a>
-                <?php } else { ?>
-                    <a class="nav-item nav-link" href="../Pages/Inscription.php">Inscription</a>
-                    <a class="nav-item nav-link" href="../Pages/Connexion.php">Connexion</a>
-                <?php } ?>
-            </div>
-        </div>
-  </div>
+
+<!-- NAV DEBUT -->
+<nav>
+  <label class="logo">BTS Assist</label>
+  <ul>
+    <li>
+      <a href="../Pages/Index.php">ACCUEIL</a>
+    </li>
+    <li>
+      <a href="../Pages/FilActualite.php">FIL D'ACTUALITE</a>
+    </li>
+    <li>
+      <a href="../Pages/NosBts.php">NOS BTS</a>
+    </li>
+    <?php if(isset($_SESSION["id_role"]) && $_SESSION["id_role"] == 2) { ?>
+      <li>
+        <a href="../Pages/AjoutCours.php">AJOUTER UN COURS</a>
+      </li>
+      <li>
+        <a href="../Pages/AjoutExercice.php">AJOUTER UN EXERCICE</a>
+      </li>
+      <li>
+        <a href="../Pages/MesArticles.php">MES ARTICLES</a>
+      </li>
+    <?php } ?>
+    <?php if(isset($_SESSION["email"])) {?>
+      <li>
+        <a href="../Pages/Profil.php">PROFIL</a>
+      </li>
+      <li>
+        <a href="../Traitements/Deconnexion.php">DECONNEXION</a>
+      </li>
+    <?php } else { ?>
+      <li>
+        <a href="../Pages/Connexion.php">CONNEXION</a>
+      </li>
+      <li>
+        <a href="../Pages/Inscription.php">INSCRIPTION</a>
+      </li>
+    <?php } ?>
+  </ul>
+  <label id="icon">
+    <i class="fas fa-bars"></i>
+  </label>
 </nav>
+<!-- NAV FIN -->

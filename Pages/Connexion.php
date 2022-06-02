@@ -4,10 +4,13 @@ if(isset($_SESSION["id_utilisateur"])) {
     header("location:Index.php");
 }
 ?>
-    <div class="mt-4" align="center">
-        <h2>Connexion</h2>
+<section class="section section-bg larger-padding-top">
+    <div class="section-header">
+        <h2 class="titreAcceuil">Connexion</h2>
+        <span class="section-separator"></span>
+        <p class="titreAcceuil">Se connecter</p>
     </div>
-    <div class="container">
+    <div class="container container-small">
     <?php if(isset($_GET["succes"]) && $_GET["succes"] == "inscrit"){
                 echo "<p class='text-success'>Vous avez bien été inscrit, connectez-vous !</p>";
             }?>
@@ -25,8 +28,8 @@ if(isset($_SESSION["id_utilisateur"])) {
             <input class="form-label check me-3" type="checkbox" name="remember">
             <label class="form-label">Resté connecté</label>
         </div>
-        <div>
-            <button class="btn button-login mt-4" type="submit" name="connexion">Se connecter</button>
+        <div class="text-center">
+            <button class="btn div-btn-base mt-4" type="submit" name="connexion">Se connecter</button>
         </div>
     </form>
 
@@ -49,4 +52,5 @@ if(isset($_SESSION["id_utilisateur"])) {
             
 
     </div>
+    </section>
 <?php require_once "Pied.php"?>

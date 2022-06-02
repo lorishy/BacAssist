@@ -5,11 +5,10 @@ if(empty($_SESSION["id_utilisateur"])) {
 }
 ?><pre><?php
 $Utilisateur = new Utilisateur($_SESSION["id_utilisateur"]);
-print_r($Utilisateur);
+
 ?></pre>
 
 <div class="mt-4" align="center">
-    <h2>Edition du profil</h2>
     <?php if(isset($_GET["succes"]) && $_GET["succes"] == "1") {
         echo "<div class='mt-2 text-success'>Modification sauvegardé !</div>";}?>
     <?php if(isset($_GET["succes"]) && $_GET["succes"] == "2") {
@@ -32,8 +31,13 @@ print_r($Utilisateur);
         echo "<div class='mt-4 text-danger'>Veuillez remplir au moins un champ !</div>";}?>
         
 </div>
-<div class="container">
-
+<section class="section section-bg larger-padding-top">
+    <div class="section-header">
+        <h2 class="titreAcceuil">Edition du profil</h2>
+        <span class="section-separator"></span>
+        <p class="titreAcceuil">Modifier votre profil</p>
+    </div> 
+<div class="container container-small">
     <form class="mt-4" method="POST" action="../Traitements/EditProfil.php" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label">Nom :</label>
@@ -63,12 +67,12 @@ print_r($Utilisateur);
             <label class="form-label">Avatar :</label>
             <input type="file" class="form-control" name="avatar">
         </div>
-        <div>
-            <button class="btn button-login mt-4" type="submit" name="save">Sauvegarder les modifications</button>
+        <div class="test">
+            <button class="btn div-btn-base mt-4" type="submit" name="save">Sauvegarder les modifications</button>
+            <a href="../Pages/Supprimer.php?id=<?=$_SESSION['id_utilisateur']?>" class="btn button-deco mt-4" type="submit" name="supprimer">Supprimer mon profil</a>
         </div>
     </form>
-    <a href="../Pages/Supprimer.php?id=<?=$_SESSION['id_utilisateur']?>" class="btn button-deco mt-4" type="submit" name="supprimer">Supprimer mon profil</a>
 </div>
-
+</section>
 
 <?php require_once "Pied.php"?>

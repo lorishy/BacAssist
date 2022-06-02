@@ -4,8 +4,14 @@ if(empty($_SESSION["id_utilisateur"]) || $_GET["id"] != $_SESSION["id_utilisateu
     header("location:../Pages/Profil.php");
 }
 ?>
-<div class="container mt-4 text-center">
-    <h1>Êtes-vous sûr de vouloir supprimer votre compte ?</h1>
+<section class="section section-bg larger-padding-top">
+    <div class="section-header">
+        <h2 class="titreAcceuil">Supprimer</h2>
+        <span class="section-separator"></span>
+        <p class="titreAcceuil">Simpression</p>
+    </div> 
+    <div class="container container-small text-center">
+    <h3>Êtes-vous sûr de vouloir supprimer votre compte ?</h3>
     <form class="mt-4" method="POST" action="../Traitements/Supprimer.php">
         <input type="submit" name="supprimer" class="btn button-deco" value="Oui">
         <input type="submit" name="cancel" class="btn button-login" value="revenir sur le profil">
